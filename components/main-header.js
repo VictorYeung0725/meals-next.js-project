@@ -5,6 +5,8 @@ import classes from '@/components/main-header.module.css';
 import LogoImg from '@/assets/logo.png';
 import MainHeaderBackground from './main-header-background';
 
+import NavLink from './nav-link';
+
 export default function MainHeader() {
   return (
     <>
@@ -15,16 +17,7 @@ export default function MainHeader() {
           NextLevel food
         </Link>
 
-        <nav className={classes.nav}>
-          <ul>
-            <li>
-              <Link href='/meals'>Browse Meals</Link>
-            </li>
-            <li>
-              <Link href='/community'>Foodies Community</Link>
-            </li>
-          </ul>
-        </nav>
+        <NavLink />
       </header>
     </>
   );
