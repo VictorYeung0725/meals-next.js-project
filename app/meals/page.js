@@ -1,11 +1,17 @@
+import { Suspense } from 'react';
+
 import { getMeals } from '@/lib/meals';
 import classes from './page.module.css';
 import MealsGrid from '@/components/meals/meals-grid';
 import Link from 'next/link';
 
-export default async function MealsPage() {
+async function Meals() {
   //already inside the server side not need fetch data from server
   const meals = await getMeals();
+  return <MealsGrid meals={meals} />;
+}
+
+export default async function MealsPage() {
   return (
     <>
       <header className={classes.header}>
@@ -21,8 +27,13 @@ export default async function MealsPage() {
         </p>
       </header>
       <main className={classes.main}>
-        <MealsGrid meals={meals} />
+        <Suspense
+          fallback={<p className={classes.loading}>Fetching data...</p>}
+        >
+          <Meals />
+        </Suspense>
       </main>
+      ;
     </>
   );
 }
